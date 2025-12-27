@@ -1,0 +1,417 @@
+-- // sistema de updates hecho por zleyend
+-- FINDER / NOTOFICADOR GRATIS 3M - ∞
+-- https://discord.gg/ymtUAWRcdK
+-- 
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+
+local COLORS = {
+    Background             = Color3.fromRGB(30, 25, 15),
+    BackgroundTransparency = 0.1,
+    Surface                = Color3.fromRGB(45, 37, 22),
+    
+    Text                   = Color3.fromRGB(255, 255, 255),
+    TextDim                = Color3.fromRGB(240, 240, 220),
+    Accent                 = Color3.fromRGB(255, 215, 0),
+    Gold                   = Color3.fromRGB(255, 215, 0),
+    LightGold              = Color3.fromRGB(255, 245, 200),
+    DarkGold               = Color3.fromRGB(205, 155, 30),
+    Bronze                 = Color3.fromRGB(225, 147, 70),
+    Yellow                 = Color3.fromRGB(255, 255, 180),
+    Orange                 = Color3.fromRGB(255, 185, 40),
+    Success                = Color3.fromRGB(120, 255, 120),
+    
+    TextGold               = Color3.fromRGB(255, 245, 170),
+}
+
+local screenGui
+local activeToasts = {}
+
+local function createElement(className, properties)
+    local el = Instance.new(className)
+    for k, v in pairs(properties) do
+        el[k] = v
+    end
+    return el
+end
+
+local function tween(el, info, props)
+    local t = TweenService:Create(el, info, props)
+    t:Play()
+    return t
+end
+
+local function makeTextGlow(textElement, color1, color2, duration, delay)
+    color1 = color1 or COLORS.TextGold
+    color2 = color2 or Color3.new(1, 1, 1)
+    duration = duration or 1.2
+    delay = delay or 0
+    
+    task.spawn(function()
+        if delay > 0 then task.wait(delay) end
+        
+        while textElement and textElement.Parent do
+            tween(textElement, TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+                TextColor3 = color2
+            })
+            task.wait(duration)
+            tween(textElement, TweenInfo.new(duration, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+                TextColor3 = color1
+            })
+            task.wait(duration)
+        end
+    end)
+end
+
+local function addGoldGradient(element, color1, color2, rotation, isBorder)
+    color1 = color1 or COLORS.DarkGold
+    color2 = color2 or COLORS.LightGold
+    rotation = rotation or 45
+    
+    local gradient = Instance.new("UIGradient")
+    gradient.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, color1),
+        ColorSequenceKeypoint.new(0.3, COLORS.Gold),
+        ColorSequenceKeypoint.new(0.7, COLORS.Yellow),
+        ColorSequenceKeypoint.new(1, color2)
+    })
+    gradient.Rotation = rotation
+    gradient.Parent = element
+    
+    task.spawn(function()
+        while element.Parent and gradient.Parent do
+            for rot = rotation, rotation + 360, 6 do
+                if not gradient.Parent then break end
+                gradient.Rotation = rot
+                task.wait(0.02)
+            end
+        end
+    end)
+    
+    return gradient
+end
+
+local function addPulseEffect(frame, intensity, speed)
+    intensity = intensity or 0.8
+    speed = speed or 1
+    
+    task.spawn(function()
+        while frame and frame.Parent do
+            tween(frame, TweenInfo.new(speed/2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+                BackgroundTransparency = frame.BackgroundTransparency - intensity
+            })
+            task.wait(speed/2)
+            tween(frame, TweenInfo.new(speed/2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {
+                BackgroundTransparency = frame.BackgroundTransparency + intensity
+            })
+            task.wait(speed/2)
+        end
+    end)
+end
+
+
+local function showToastNotification(title, icon, duration, positionIndex)
+    duration = duration or 3
+    positionIndex = positionIndex or 1
+    
+    local startX = 1
+    local startY = 0.05 + ((positionIndex - 1) * 0.12)
+    
+    local toast = createElement("Frame", {
+        Name = "ToastNotification",
+        Size = UDim2.new(0.28, 0, 0.1, 0), 
+        Position = UDim2.new(startX, 0, startY, 0),
+        BackgroundColor3 = COLORS.Background,
+        BackgroundTransparency = 0.1,
+        BorderSizePixel = 0,
+        Parent = screenGui,
+        ZIndex = 100,
+        AnchorPoint = Vector2.new(1, 0),
+    })
+    
+    local toastCorner = Instance.new("UICorner")
+    toastCorner.CornerRadius = UDim.new(0, 12)
+    toastCorner.Parent = toast
+    
+    local innerGlow = createElement("Frame", {
+        Size = UDim2.new(1, -6, 1, -6),
+        Position = UDim2.new(0, 3, 0, 3),
+        BackgroundColor3 = COLORS.LightGold,
+        BackgroundTransparency = 0., 
+        BorderSizePixel = 0,
+        Parent = toast,
+        ZIndex = 99,
+    })
+    
+    local innerCorner = Instance.new("UICorner")
+    innerCorner.CornerRadius = UDim.new(0, 10)
+    innerCorner.Parent = innerGlow
+    
+    local toastBorder = Instance.new("UIStroke")
+    toastBorder.Color = COLORS.Gold
+    toastBorder.Thickness = 3
+    toastBorder.Transparency = 0
+    toastBorder.Parent = toast
+    
+    local borderGradient = addGoldGradient(toastBorder, COLORS.DarkGold, COLORS.Yellow, 0, true)
+    
+    addPulseEffect(innerGlow, 0.1, 6)
+    
+    local content = createElement("Frame", {
+        Size = UDim2.new(1, -20, 1, -25), 
+        Position = UDim2.new(0, 10, 0, 8),
+        BackgroundTransparency = 1,
+        Parent = toast,
+        ZIndex = 200, 
+    })
+    
+    local accentLine = createElement("Frame", {
+        Size = UDim2.new(0, 3, 0.7, 0),
+        Position = UDim2.new(0, 0, 0.15, 0),
+        BackgroundColor3 = COLORS.Gold,
+        BackgroundTransparency = 0.3,
+        BorderSizePixel = 0,
+        Parent = content,
+        ZIndex = 201,
+    })
+    
+    local lineCorner = Instance.new("UICorner")
+    lineCorner.CornerRadius = UDim.new(1, 0)
+    lineCorner.Parent = accentLine
+    
+    local iconLabel
+    if icon then
+        iconLabel = createElement("TextLabel", {
+            Size = UDim2.new(0, 30, 0, 30), 
+            Position = UDim2.new(0, 10, 0.5, -15),
+            BackgroundTransparency = 1,
+            Text = icon,
+            TextColor3 = COLORS.TextGold,
+            TextSize = 15, 
+            Font = Enum.Font.GothamBold,
+            TextStrokeColor3 = Color3.fromRGB(80, 60, 0),
+            TextStrokeTransparency = 0.2,
+            TextTransparency = 0,
+            Parent = content,
+            ZIndex = 202,
+        })
+        makeTextGlow(iconLabel, COLORS.TextGold, Color3.new(1, 1, 1), 0.6, 0)
+    end
+    
+    local textX = icon and 50 or 15
+    local textContainer = createElement("Frame", {
+        Size = UDim2.new(1, -textX, 1, 0),
+        Position = UDim2.new(0, textX, 0, 0),
+        BackgroundTransparency = 1,
+        Parent = content,
+        ZIndex = 203,
+    })
+    
+    local titleText = createElement("TextLabel", {
+        Size = UDim2.new(1, 0, 0.6, 0),
+        Position = UDim2.new(0, 0, 0.7, 0),
+        BackgroundTransparency = 1,
+        Text = title,
+        TextColor3 = COLORS.TextGold,
+        TextSize = 18,
+        Font = Enum.Font.GothamBold,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        TextYAlignment = Enum.TextYAlignment.Bottom,
+        TextStrokeColor3 = Color3.fromRGB(40, 30, 0),
+        TextStrokeTransparency = 0.1, 
+        TextTransparency = 0,
+        Parent = textContainer,
+        ZIndex = 204,
+    })
+    
+    local textGradient = addGoldGradient(titleText, COLORS.TextGold, Color3.new(1, 1, 0.9), 45)
+    
+    makeTextGlow(titleText, COLORS.TextGold, Color3.new(1, 1, 1), 0.6, 0.2)
+    
+    local subtitleText = createElement("TextLabel", {
+        Size = UDim2.new(1, 0, 0.4, 0),
+        Position = UDim2.new(0, 0,50, 0),
+        BackgroundTransparency = 1,
+        Text = "ACTIVADO",
+        TextColor3 = COLORS.Success,
+        TextSize = 6, 
+        Font = Enum.Font.GothamBold,
+        TextXAlignment = Enum.TextXAlignment.Left,
+        TextYAlignment = Enum.TextYAlignment.Top,
+        TextStrokeColor3 = Color3.fromRGB(0, 50, 0),
+        TextStrokeTransparency = 0.1, 
+        TextTransparency = 0,
+        Parent = textContainer,
+        ZIndex = 205,
+    })
+    
+    makeTextGlow(subtitleText, COLORS.Success, Color3.fromRGB(200, 255, 200), 1.5, 0.3)
+    
+    local progressBar = createElement("Frame", {
+        Size = UDim2.new(0, 0, 0, 3), 
+        Position = UDim2.new(0, 10, 1, -8),
+        BackgroundColor3 = COLORS.Gold,
+        BackgroundTransparency = 0.2,
+        BorderSizePixel = 0,
+        Parent = toast,
+        ZIndex = 150,
+    })
+    
+    local progressCorner = Instance.new("UICorner")
+    progressCorner.CornerRadius = UDim.new(1, 0)
+    progressCorner.Parent = progressBar
+    
+    makeTextGlow(progressBar, COLORS.Gold, COLORS.Yellow, 0.8, 0)
+    
+    toast.Position = UDim2.new(startX + 0.5, 0, startY, 0)
+    toast.BackgroundTransparency = 1
+    toastBorder.Transparency = 1
+    innerGlow.BackgroundTransparency = 1
+    accentLine.BackgroundTransparency = 1
+    if iconLabel then iconLabel.TextTransparency = 0 end 
+    titleText.TextTransparency = 0
+    subtitleText.TextTransparency = 0
+    progressBar.Size = UDim2.new(0, 0, 0, 3)
+    progressBar.BackgroundTransparency = 1
+    
+    task.wait(0.1 * (positionIndex - 1))
+    
+    tween(toast, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+        Position = UDim2.new(startX, -15, startY, 0)
+    })
+    
+    tween(toast, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = 0.1
+    })
+    
+    tween(innerGlow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = 0.95
+    })
+    
+    tween(toastBorder, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Transparency = 0.3
+    })
+    
+    tween(accentLine, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = 0.3
+    })
+    
+    if iconLabel then
+        task.wait(0.1)
+        tween(iconLabel, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+            Size = UDim2.new(0, 32, 0, 32),
+            Position = UDim2.new(0, 9, 0.5, -16)
+        })
+    end
+    
+    task.wait(0.1)
+    titleText.TextSize = 18
+    tween(titleText, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+        TextSize = 16
+    })
+    
+    task.wait(0.1)
+    tween(progressBar, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = 0.2
+    })
+    
+    tween(progressBar, TweenInfo.new(duration - 0.8, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+        Size = UDim2.new(1, -20, 0, 3)
+    })
+    
+    table.insert(activeToasts, {
+        toast = toast,
+        positionIndex = positionIndex
+    })
+    
+    task.wait(duration)
+    
+    tween(progressBar, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = 1
+    })
+    
+    
+    if iconLabel then
+        tween(iconLabel, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            TextTransparency = 1
+        })
+    end
+    
+    tween(titleText, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        TextTransparency = 1
+    })
+    
+    tween(subtitleText, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        TextTransparency = 1
+    })
+    
+    tween(accentLine, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = 1
+    })
+    
+    tween(toast, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+        Position = UDim2.new(startX + 0.5, 0, startY, 0),
+        BackgroundTransparency = 1
+    })
+    
+    tween(toastBorder, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Transparency = 1
+    })
+    
+    tween(innerGlow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        BackgroundTransparency = 1
+    })
+    
+    task.wait(0.5)
+    
+    for i, toastInfo in ipairs(activeToasts) do
+        if toastInfo.toast == toast then
+            table.remove(activeToasts, i)
+            break
+        end
+    end
+    
+    if toast and toast.Parent then
+        toast:Destroy()
+    end
+    
+    return toast
+end
+
+local function showAllNotifications()
+    for _, toastInfo in ipairs(activeToasts) do
+        if toastInfo.toast and toastInfo.toast.Parent then
+            toastInfo.toast:Destroy()
+        end
+    end
+    activeToasts = {}
+    
+    task.wait(0.5)
+    
+    task.spawn(function()
+        showToastNotification("+ INSTANT GRAB", "⚡", 3, 1)
+        task.wait(0.5)
+        
+        
+        showToastNotification("+ FPS BOOST", "🚀", 3, 2)
+        task.wait(0.5)
+        
+        
+        showToastNotification("+ XRAY VISION", "👁️", 3, 3)
+    end)
+end
+
+local function initialize()
+    screenGui = createElement("ScreenGui", {
+        Name = "GoldenNotifications",
+        ResetOnSpawn = false,
+        DisplayOrder = 999999,
+        ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+        Parent = Players.LocalPlayer:WaitForChild("PlayerGui"),
+    })
+    
+    task.wait(1)
+    showAllNotifications()
+end
+
+initialize()
