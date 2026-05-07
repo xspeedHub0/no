@@ -29,7 +29,7 @@ local function setupGUI()
     G2L["2"]["BackgroundTransparency"] = 1
     G2L["2"]["Size"] = UDim2.new(0, 135, 0, 34)
     G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-    G2L["2"]["Text"] = [[ZLHUB  神々]]
+    G2L["2"]["Text"] = [[maintenance   神々]]
     G2L["2"]["Position"] = UDim2.new(0.635, 105, -0.5, 125)
 
     G2L["3"] = Instance.new("UIGradient", G2L["2"])
