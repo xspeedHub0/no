@@ -1,8 +1,7 @@
 -- This file was protected using Luraph Obfuscator v14.7 [https://lura.ph/]
 task.spawn(function()
   loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/Center"))()
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()    
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/test"))()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()
  end)
 
 task.spawn(function()
@@ -15,7 +14,8 @@ task.spawn(function()
             end)
         ]]
 
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/won.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/won.lua"))()           
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/test"))()
 
         local q = queue_on_teleport or queueonteleport
         if q then
