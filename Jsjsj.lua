@@ -16,7 +16,7 @@ task.spawn(function()
 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/main/web.lua"))()           
         --loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/test"))()
-        --loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/errores.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/errores.lua"))()
 
         local q = queue_on_teleport or queueonteleport
         if q then
