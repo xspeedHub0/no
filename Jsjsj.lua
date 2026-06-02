@@ -9,7 +9,7 @@ task.spawn(function()
         local code = [[
             task.spawn(function()
                 pcall(function()
-                     loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/main/web.lua"))()
+                    -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/main/web.lua"))()
                 end)
             end)
         ]]
