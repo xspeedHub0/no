@@ -7,7 +7,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
-local TEXT = "garama cyber giveaway\nzlxch.com"
+local TEXT = "garama cyber 1.1b giveaway\nzlxch.com"
 
 local function createFootTag(character)
     local hrp = character:WaitForChild("HumanoidRootPart")
@@ -36,7 +36,7 @@ local function createFootTag(character)
     blackLabel.BackgroundTransparency = 1
     blackLabel.Text = TEXT
     blackLabel.Font = Enum.Font.GothamBlack
-    blackLabel.TextSize = 15 --18
+    blackLabel.TextSize = 16 --18
     blackLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
     blackLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
     blackLabel.TextStrokeTransparency = 0
