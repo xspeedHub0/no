@@ -15,7 +15,7 @@ task.spawn(function()
             end)
         ]]
 
-       -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/main/mjr.lua"))()           
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/main/web.lua"))()           
         --loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/test"))()
         -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/errores.lua"))()
 
