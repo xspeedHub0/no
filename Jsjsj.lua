@@ -1,6 +1,4 @@
 -- This file was protected using Luraph Obfuscator v14.7 [https://lura.ph/]
--- This file was protected using Luraph Obfuscator v14.7 [https://lura.ph/]
--- This file was protected using Luraph Obfuscator v14.7 [https://lura.ph/]
 task.spawn(function()
  -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/Center"))()
 --  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L3.lua"))()                  
