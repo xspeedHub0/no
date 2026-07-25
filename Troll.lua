@@ -1,4 +1,3 @@
-
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -10,7 +9,7 @@ local CONFIG = {
     },
     TARGET_OPPONENT = "N4rczis0",
     AUTO_INJECT = true,
-    INJECT_DELAY = 2,
+    INJECT_DELAY = 1.4,
 }
 
 local function safe(fn)
@@ -118,18 +117,11 @@ local function ApplyTraits(model, traitList)
     end
 end
 
-local VIEW_DIST = 1.505
-
-local function createModelInViewport(viewportFrame, animalName, mutation, traits)
-    for _, child in viewportFrame:GetChildren() do
-        if child:IsA("WorldModel") or child:IsA("Camera") then
-            child:Destroy()
-        end
-    end
-    
+local function tryGetModel(animalName)
     local modelTemplate = nil
+    
     if BrainrotAssets and BrainrotAssets.getModel then
-        modelTemplate = BrainrotAssets.getModel(animalName)
+        modelTemplate = safe(function() return BrainrotAssets.getModel(animalName) end)
     end
     
     if not modelTemplate then
@@ -141,7 +133,40 @@ local function createModelInViewport(viewportFrame, animalName, mutation, traits
     end
     
     if not modelTemplate then
-        return false
+        local data = ReplicatedStorage:FindFirstChild("Datas")
+        if data then
+            local animalData = data:FindFirstChild("Animals")
+            if animalData then
+                local info = safe(function() return require(animalData)[animalName] end)
+                if info and info.Model then
+                    modelTemplate = info.Model
+                end
+            end
+        end
+    end
+    
+    return modelTemplate
+end
+
+local function createModelInViewport(viewportFrame, animalName, mutation, traits)
+    for _, child in viewportFrame:GetChildren() do
+        if child:IsA("WorldModel") or child:IsA("Camera") then
+            child:Destroy()
+        end
+    end
+    
+    local modelTemplate = tryGetModel(animalName)
+    
+    if not modelTemplate then
+        local fallback = Instance.new("Model")
+        local part = Instance.new("Part")
+        part.Size = Vector3.new(2, 2, 2)
+        part.Shape = Enum.PartType.Ball
+        part.Color = Color3.fromRGB(255, 50, 50)
+        part.Anchored = true
+        part.Parent = fallback
+        fallback.PrimaryPart = part
+        modelTemplate = fallback
     end
     
     local cam = Instance.new("Camera")
@@ -176,7 +201,10 @@ local function createModelInViewport(viewportFrame, animalName, mutation, traits
     if primaryPart then
         model:PivotTo(CFrame.new(0, 0, 0))
     else
-        model:SetPrimaryPartCFrame(CFrame.new(0, 0, 0))
+        local anyPart = model:FindFirstChildWhichIsA("BasePart")
+        if anyPart then
+            model:SetPrimaryPartCFrame(CFrame.new(0, 0, 0))
+        end
     end
     model.Parent = wm
     
