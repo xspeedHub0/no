@@ -1,5 +1,5 @@
 --[[
-       Leak Tag by Zleyend    |.    zlxch.com   website official
+       Leak Tag by Zleyend    |.    zlhub.net   website official
 ]]
 
 
@@ -7,7 +7,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
-local TEXT = "ZLXCH.COM"
+local TEXT = "ZLHUB.NET"
 
 local function createFootTag(character)
     local hrp = character:WaitForChild("HumanoidRootPart")
