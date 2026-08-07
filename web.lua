@@ -6,8 +6,12 @@ local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
+local UserInputService = game:GetService("UserInputService")
+
+local TEXT_SIZE = UserInputService.TouchEnabled and 18 or 22
 
 local TEXT = "ZLHUB.NET"
+
 local RENDER_NAME = "ZLFootTagUpdate"
 
 local function createText(parent)
@@ -16,7 +20,7 @@ local function createText(parent)
     blackLabel.BackgroundTransparency = 1
     blackLabel.Text = TEXT
     blackLabel.Font = Enum.Font.GothamBlack
-    blackLabel.TextSize = 18
+    blackLabel.TextSize = TEXT_SIZE
     blackLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
     blackLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
     blackLabel.TextStrokeTransparency = 0
