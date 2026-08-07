@@ -36,7 +36,7 @@ local function createFootTag(character)
     blackLabel.BackgroundTransparency = 1
     blackLabel.Text = TEXT
     blackLabel.Font = Enum.Font.GothamBlack
-    blackLabel.TextSize = 20 --18
+    blackLabel.TextSize = 18 --18
     blackLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
     blackLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
     blackLabel.TextStrokeTransparency = 0
