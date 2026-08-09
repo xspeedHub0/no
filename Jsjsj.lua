@@ -2,7 +2,6 @@
 task.spawn(function()
  -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/Center"))()
 --  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L3.lua"))()                  
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()
   
   loadstring(game:HttpGet("https://pastefy.app/7BOgwCeP/raw"))()
     
@@ -18,7 +17,7 @@ task.spawn(function()
 
                            loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/main/web.lua"))()
     
-                    --  loadstring(game:HttpGet("https://pastefy.app/7BOgwCeP/raw"))()
+                     loadstring(game:HttpGet("https://pastefy.app/7BOgwCeP/raw"))()
     
                     --   loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L3.lua"))()
                       loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()
