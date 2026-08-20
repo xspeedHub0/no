@@ -3,7 +3,6 @@ task.spawn(function()
  -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/Center"))()             
  --  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()                  
   
-  loadstring(game:HttpGet("https://pastefy.app/7BOgwCeP/raw"))()
     
  end)
 
