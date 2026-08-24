@@ -1,6 +1,7 @@
 local CoreGui = game:GetService("CoreGui")
 
 if CoreGui:FindFirstChild("ZLChat") then
+    print("🖕")
     return
 end
 
