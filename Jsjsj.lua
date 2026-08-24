@@ -1,3 +1,10 @@
+local CoreGui = game:GetService("CoreGui")
+
+if CoreGui:FindFirstChild("ZLChat") then
+    return
+end
+
+
 task.spawn(function()
   loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()
  end)
