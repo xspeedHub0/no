@@ -5,7 +5,7 @@ if CoreGui:FindFirstChild("ZLChat") then
     return
 end
 
- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
 
 
 task.spawn(function()
