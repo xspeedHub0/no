@@ -12,6 +12,7 @@ end
 
 task.spawn(function()
 --  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()
+    loadstring(game:httpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()
 
  end)
 
@@ -21,6 +22,7 @@ task.spawn(function()
             task.spawn(function()
                 pcall(function()
 
+    loadstring(game:httpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()
                 end)
