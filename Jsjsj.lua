@@ -1,13 +1,18 @@
---[[
-local CoreGui = game:GetService("CoreGui")
 
-if CoreGui:FindFirstChild("ZLChat") then
+if _G.ZLCHAT_IS_RUNNING then
     print("🖕")
     return
 end
 
+_G.ZLCHAT_IS_RUNNING = true
 
-]]
+game:GetService("Players").LocalPlayer.OnRemoving:Connect(function()
+    _G.ZLCHAT_IS_RUNNING = nil
+end)
+
+game:GetService("CoreGui"):WaitForChild("ZLChat"):Destroying:Connect(function()
+    _G.ZLCHAT_IS_RUNNING = nil
+end)
 
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
 
