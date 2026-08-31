@@ -5,7 +5,7 @@ gui.IgnoreGuiInset = true
 
 gui.Destroying:Connect(function()
     _G.ZLCHAT_IS_RUNNING = nil
-    print("🧹 ZLChat GUI destruida, bandera limpiada")
+    print("🐦‍🔥")
 end)
 
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
