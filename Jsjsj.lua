@@ -1,12 +1,10 @@
-local gui = Instance.new("ScreenGui", game.CoreGui)
-gui.Name = "ZLChat"
-gui.ResetOnSpawn = false
-gui.IgnoreGuiInset = true
 
-gui.Destroying:Connect(function()
-    _G.ZLCHAT_IS_RUNNING = nil
-    print("🐦‍🔥")
-end)
+local CoreGui = game:GetService("CoreGui")
+
+if CoreGui:FindFirstChild("ZLChat") then
+    print("🐦‍🔥🐦‍🔥")
+    return
+end
 
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
 
