@@ -6,7 +6,9 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
-local TEXT = "ZLHUB.NET"
+local TEXT = "ZLHUB.NET\nTrade And Duel Finder"
+
+
 
 local oldGui = player.PlayerGui:FindFirstChild("FootTagGui")
 if oldGui then
