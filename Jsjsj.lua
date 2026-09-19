@@ -1,11 +1,11 @@
---[[
+
 local CoreGui = game:GetService("CoreGui")
 
 if CoreGui:FindFirstChild("ZLChat") then
     print("🐦‍🔥🐦‍🔥")
     return
 end
-]]
+
 
 
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
