@@ -25,7 +25,7 @@ task.spawn(function()
                 pcall(function()
 
                -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/web.lua"))()
-        loadstring(game:HttpGet("https://pastefy.app/SDHYjuxp/raw"))()
+      --  loadstring(game:HttpGet("https://pastefy.app/SDHYjuxp/raw"))()
                 
 
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()
