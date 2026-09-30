@@ -1,11 +1,5 @@
 -- This file was protected using Luraph Obfuscator v14.9 [https://lura.ph/]
-local CoreGui = game:GetService("CoreGui")
-
-if CoreGui:FindFirstChild("ZLChat") then
-    print("🐦‍🔥🐦‍🔥")
-    return
-end
-
+local w=workspace;if w:FindFirstChild("ZLChat") then print("🐦‍🔥🐦‍🔥");return end;local p=Instance.new("Part",w);p.Name="ZLChat";p.Transparency=1;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false
 
 
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
