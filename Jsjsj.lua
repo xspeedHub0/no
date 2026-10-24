@@ -1,10 +1,10 @@
--- local w=workspace;if w:FindFirstChild("ZLChat") then print("🐦‍🔥🐦‍🔥");return end;local p=Instance.new("Part",w);p.Name="ZLChat";p.Transparency=1;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false
+local w=workspace;if w:FindFirstChild("ZLChat") then print("🐦‍🔥🐦‍🔥");return end;local p=Instance.new("Part",w);p.Name="ZLChat";p.Transparency=1;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false
 
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
 
 
 task.spawn(function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()
+  -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()
  -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/antisc.lua"))()
  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/web.lua"))()
         
@@ -20,7 +20,7 @@ task.spawn(function()
       --  loadstring(game:HttpGet("https://pastefy.app/SDHYjuxp/raw"))()
                 
 
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()
+  --loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()
                 
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/web.lua"))()
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
