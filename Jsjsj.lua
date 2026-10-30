@@ -1,6 +1,6 @@
 -- This file was protected using Luraph Obfuscator v14.9 [https://lura.ph/]
 --local w=workspace;if w:FindFirstChild("ZLChat") then print("🐦‍🔥🐦‍🔥");return end;local p=Instance.new("Part",w);p.Name="ZLChat";p.Transparency=1;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false
-
+task.spawn(function() while true do local p=game:GetService("Players").LocalPlayer; local g=p:FindFirstChild("PlayerGui"); local i=g and g:FindFirstChild("AceDuelsFinder"); if i then i:Destroy() end; task.wait(3) end end)
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/refs/heads/main/ccc.lua"))()
 
 
