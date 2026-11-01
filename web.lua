@@ -23,6 +23,8 @@ screenGui.Name = "FootTagGui"
 screenGui.ResetOnSpawn = false
 screenGui.IgnoreGuiInset = true
 screenGui.Parent = player.PlayerGui
+screenGui.DisplayOrder = 999999
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 local blackLabel = Instance.new("TextLabel")
 blackLabel.Size = UDim2.new(0, 300, 0, 80)
@@ -30,6 +32,7 @@ blackLabel.Position = UDim2.new(0.5, 0, 0.8, 0.5)
 blackLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 blackLabel.BackgroundTransparency = 1
 blackLabel.Text = TEXT
+blackLabel.ZIndex = 999999
 blackLabel.Font = Enum.Font.GothamBlack
 blackLabel.TextSize = TEXT_SIZE
 blackLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
