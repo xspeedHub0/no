@@ -1,14 +1,17 @@
 --[[
        Leak Tag by Zleyend    |.    zlhub.net   website official
 ]]
-
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 
 local player = Players.LocalPlayer
-local TEXT = ".gg/zlhub"
+local TEXT = "discord.gg/zlhub"
 
+local isMobile = UserInputService.TouchEnabled
+    and not UserInputService.KeyboardEnabled
 
+local TEXT_SIZE = isMobile and 22 or 35
 
 local oldGui = player.PlayerGui:FindFirstChild("FootTagGui")
 if oldGui then
@@ -28,7 +31,7 @@ blackLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 blackLabel.BackgroundTransparency = 1
 blackLabel.Text = TEXT
 blackLabel.Font = Enum.Font.GothamBlack
-blackLabel.TextSize = 22
+blackLabel.TextSize = TEXT_SIZE
 blackLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 blackLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 blackLabel.TextStrokeTransparency = 0
@@ -68,7 +71,6 @@ RunService.RenderStepped:Connect(function()
             NumberSequenceKeypoint.new(0.53, 1),
             NumberSequenceKeypoint.new(1.00, 1)
         }
-
     else
         local p = (progress - 0.5) * 2
         local y = p * 2 - 1
