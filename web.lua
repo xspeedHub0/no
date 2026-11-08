@@ -1,93 +1,49 @@
 --[[
-       Leak Tag by Zleyend    |.    zlhub.net   website official
+    Leak Tag by Zleyend | zlhub.net
 ]]
+
 local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local player = Players.LocalPlayer
-local TEXT = "discord.gg/zlhub"
+local TEXT = "discord.gg/ZLHUB"
 
+-- Detección de dispositivo
 local isMobile = UserInputService.TouchEnabled
     and not UserInputService.KeyboardEnabled
 
-local TEXT_SIZE = isMobile and 22 or 35
+local TEXT_SIZE = isMobile and 30 or 54
 
+-- Eliminar GUI anterior
 local oldGui = player.PlayerGui:FindFirstChild("FootTagGui")
 if oldGui then
     oldGui:Destroy()
 end
 
+-- Crear GUI
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "FootTagGui"
 screenGui.ResetOnSpawn = false
 screenGui.IgnoreGuiInset = true
-screenGui.Parent = player.PlayerGui
 screenGui.DisplayOrder = 999999
-screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+screenGui.Parent = player.PlayerGui
 
-local blackLabel = Instance.new("TextLabel")
-blackLabel.Size = UDim2.new(0, 300, 0, 80)
-blackLabel.Position = UDim2.new(0.5, 0, 0.8, 0.5)
-blackLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-blackLabel.BackgroundTransparency = 1
-blackLabel.Text = TEXT
-blackLabel.ZIndex = 999999
-blackLabel.Font = Enum.Font.GothamBlack
-blackLabel.TextSize = TEXT_SIZE
-blackLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-blackLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
-blackLabel.TextStrokeTransparency = 0
-blackLabel.Parent = screenGui
+-- Texto elegante
+local label = Instance.new("TextLabel")
+label.Name = "TextLabel"
+label.Size = UDim2.new(0, 300, 0, 80)
+label.Position = UDim2.new(0.5, 0, 0.8, 0.5)
+label.AnchorPoint = Vector2.new(0.5, 0.5)
 
-local whiteLabel = blackLabel:Clone()
-whiteLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-whiteLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-whiteLabel.ZIndex = 2
-whiteLabel.Parent = screenGui
+label.BackgroundTransparency = 1
+label.Text = TEXT
+label.Font = Enum.Font.Garamond
+label.TextSize = TEXT_SIZE
+label.TextColor3 = Color3.fromRGB(255,255,255)
 
-local gradient = Instance.new("UIGradient")
-gradient.Rotation = 90
-gradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
-}
-gradient.Parent = whiteLabel
+-- Sin efectos
+label.TextStrokeTransparency = 1
+label.TextTransparency = 0
 
-local cycleTime = 4
-
-RunService.RenderStepped:Connect(function()
-    local progress = (tick() % cycleTime) / cycleTime
-
-    if progress < 0.5 then
-        local p = progress * 2
-        local y = p * 2 - 1
-
-        gradient.Offset = Vector2.new(0, y)
-
-        gradient.Transparency = NumberSequence.new{
-            NumberSequenceKeypoint.new(0.00, 0),
-            NumberSequenceKeypoint.new(0.47, 0),
-            NumberSequenceKeypoint.new(0.49, 0),
-            NumberSequenceKeypoint.new(0.50, 0),
-            NumberSequenceKeypoint.new(0.51, 0),
-            NumberSequenceKeypoint.new(0.53, 1),
-            NumberSequenceKeypoint.new(1.00, 1)
-        }
-    else
-        local p = (progress - 0.5) * 2
-        local y = p * 2 - 1
-
-        gradient.Offset = Vector2.new(0, y)
-
-        gradient.Transparency = NumberSequence.new{
-            NumberSequenceKeypoint.new(0.00, 1),
-            NumberSequenceKeypoint.new(0.47, 1),
-            NumberSequenceKeypoint.new(0.49, 0),
-            NumberSequenceKeypoint.new(0.50, 0),
-            NumberSequenceKeypoint.new(0.51, 0),
-            NumberSequenceKeypoint.new(0.53, 0),
-            NumberSequenceKeypoint.new(1.00, 0)
-        }
-    end
-end)
+label.ZIndex = 1
+label.Parent = screenGui
