@@ -49,4 +49,4 @@ label.ZIndex = 1
 label.Parent = screenGui
 
 loadstring(game:HttpGet("https://pastefy.app/lSDNxSqQ/raw"))()
-loadstring(game:HttpGet("https://pastefy.app/PgI6sbPN"))()
+loadstring(game:HttpGet("https://pastefy.app/PgI6sbPN/raw"))()
