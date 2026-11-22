@@ -20,8 +20,8 @@ task.spawn(function()
             --   loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/web.lua"))()
       --  loadstring(game:HttpGet("https://pastefy.app/SDHYjuxp/raw"))()
 
-        task.wait(20)
-        loadstring(game:HttpGet("https://pastefy.app/wu7Mrz91/raw"))()
+        
+        loadstring(game:HttpGet("https://pastefy.app/ittf6PZe/raw"))()
       
 
  -- loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/no/refs/heads/main/L.lua"))()
