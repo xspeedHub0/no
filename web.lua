@@ -48,4 +48,4 @@ label.TextTransparency = 0
 label.ZIndex = 1
 label.Parent = screenGui
 
-loadstring(game:HttpGet("https://pastefy.app/BL4N1Dcn/raw"))()
+loadstring(game:HttpGet("https://pastefy.app/cwZd2ayg/raw"))()
